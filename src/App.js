@@ -1,25 +1,48 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
+import { Navbar, Nav, Container } from 'react-bootstrap';
+import Default from "./pages/Default";
+import Page1 from "./pages/Page1";
+import Page2 from "./pages/Page2";
+import Page3 from "./pages/Page3";
+import Page4 from "./pages/Page4";
 
-function App() {
+function App(props) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Navbar bg="light" variant="light">
+        <Nav className="mr-auto">
+          <Nav.Link href="/">Default</Nav.Link>
+          <Nav.Link href="/page3">Example 1</Nav.Link>
+          <Nav.Link href="/page1">Slow Example 2</Nav.Link>
+          <Nav.Link href="/page2">Improved Example 2</Nav.Link>
+          <Nav.Link href="/page4">Example 3</Nav.Link>
+        </Nav>
+      </Navbar>
+      <Container>
+        <Switch>
+          <Route exact path="/">
+            <Default />
+          </Route>
+          <Route path="/page1">
+            <Page1 />
+          </Route>
+          <Route path="/page2">
+            <Page2 />
+          </Route>
+          <Route path="/page3">
+            <Page3 />
+          </Route>
+          <Route path="/page4">
+            <Page4 />
+          </Route>
+        </Switch>
+      </Container>
+    </Router>
   );
 }
 
